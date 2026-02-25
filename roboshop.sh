@@ -12,21 +12,21 @@ for instance in $@
         --security-group-ids $SG_ID \
         --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$instance}]" \
         --query 'Instances[0].InstanceId' \
-        --output text )
+        --output json )
 
         if [ $instance == "frontend" ]; then 
             IP=$( 
                 aws ec2 run-instances \
                 --instance-ids $INSTANCE_ID \
                 --query 'Reservations[].Instances[].PublicIpAddress' \
-                --output text
+                --output json
              )
         else
             IP=$( 
                 aws ec2 run-instances \
                 --instance-ids $INSTANCE_ID \
                 --query 'Reservations[].Instances[].PrivateIpAddress' \
-                --output text 
+                --output json 
             )
         fi
             echo "IP Address: $IP"

@@ -14,6 +14,8 @@ do
     --query 'Instances[0].InstanceId' \
     --output text )
 
+    aws ec2 wait instance-running --instance-ids "$INSTANCE_ID"
+
    if [ $instance == "frontend" ]; then 
         IP=$( 
             aws ec2 run-instances \

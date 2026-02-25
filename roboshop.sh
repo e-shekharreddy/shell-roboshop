@@ -6,7 +6,7 @@ AMI_ID= "ami-0220d79f3f480ecf5"
 
 for instance in $@
     do
-       instance_id = $( aws ec2 run-instances \
+       INSTANCE_ID=$( aws ec2 run-instances \
         --image-id $AMI_ID \
         --instance-type t3.micro \
         --security-group-ids $SG_ID \
@@ -17,13 +17,13 @@ for instance in $@
         if [ $instance == "frontend" ]; then 
             IP=$( 
                 aws ec2 run-instances \
-                --instance-ids $instance_id \
+                --instance-ids $INSTANCE_ID \
                 --query 'Reservations[].Instances[].PublicIpAddress' \
                 --output text \ )
         else
             IP=$( 
                 aws ec2 run-instances \
-                --instance-ids $instance_id \
+                --instance-ids $INSTANCE_ID \
                 --query 'Reservations[].Instances[].PrivateIpAddress' \
                 --output text \ )
 

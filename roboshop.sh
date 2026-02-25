@@ -26,6 +26,7 @@ for instance in $@
                 --instance-ids $INSTANCE_ID \
                 --query 'Reservations[].Instances[].PrivateIpAddress' \
                 --output text \ )
-
+        fi
+            echo "IP Address: $IP
     done
  

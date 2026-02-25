@@ -27,6 +27,6 @@ for instance in $@
                 --query 'Reservations[].Instances[].PrivateIpAddress' \
                 --output text \ )
         fi
-            echo "IP Address: $IP
+            echo "IP Address: $IP"
     done
  

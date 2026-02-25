@@ -19,14 +19,14 @@ for instance in $@
                 aws ec2 run-instances \
                 --instance-ids $INSTANCE_ID \
                 --query 'Reservations[].Instances[].PublicIpAddress' \
-                --output json
+                --output text
              )
         else
             IP=$( 
                 aws ec2 run-instances \
                 --instance-ids $INSTANCE_ID \
                 --query 'Reservations[].Instances[].PrivateIpAddress' \
-                --output json 
+                --output text
             )
         fi
             echo "IP Address: $IP"

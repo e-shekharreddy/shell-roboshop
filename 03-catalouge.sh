@@ -36,7 +36,7 @@ dnf install nodejs -y &>>$LOGS_FILE
 VALIDATE $? "Install NodeJS" # $? == $1 and " <anything> " == $2 / # $? is $1 and " <anything> " considor as $2
 
 id roboshop &>>$LOGS_FILE
-if [ $? ne 0 ]; then
+if [ $? -ne 0 ]; then
     useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop &>>$LOGS_FILE
     VALIDATE $? "Adding system user" # $? == $1 and " <anything> " == $2 / # $? is $1 and " <anything> " considor as $2
 else 

@@ -79,3 +79,4 @@ VALIDATE $? "Enabling user"
 
 systemctl start user &>>$LOGS_FILE
 VALIDATE $? "Started user"
+

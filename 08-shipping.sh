@@ -44,7 +44,7 @@ fi
 mkdir -p /app 
 VALIDATE $? "making app directory" # $? == $1 and " <anything> " == $2 / # $? is $1 and " <anything> " considor as $2
 
-curl -o /tmp/shipping.zip https://roboshop-artifacts.s3.amazonaws.com/shipping-v3.zip &>>$LOGS_FILE
+curl -L -o /tmp/shipping.zip https://roboshop-artifacts.s3.amazonaws.com/shipping-v3.zip &>>$LOGS_FILE
 VALIDATE $? "Downloading shipping code" # $? == $1 and " <anything> " == $2 / # $? is $1 and " <anything> " considor as $2
 
 cd /app
@@ -77,7 +77,7 @@ VALIDATE $? "Created systtemctl service"
 dnf install mysql -y &>>$LOGS_FILE
 VALIDATE $? "Installed MySQL"
 
-mysql -h $MYSQL_HOST -uroot -pRoboShop@1 -e 'use cities' # her -e means excute
+mysql -h $MYSQL_HOST -uroot -pRoboShop@1 -e 'use cities' 
 
 if [ $? -ne 0 ]; then 
 
@@ -100,3 +100,7 @@ VALIDATE $? "Enabled and started Shipping"
 
 systemctl restart shipping &>>$LOGS_FILE
 VALIDATE $? "Restarted shipping" 
+
+
+
+ 

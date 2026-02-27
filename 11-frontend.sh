@@ -55,7 +55,7 @@ VALIDATE $? "Unzinping the frontend code"
 rm -rf /etc/nginx/nginx.conf
 VALIDATE $? "Removed default Configuration file"
 
-cp $SCRIPT_DIR/nginx.conf etc/nginx/nginx.conf  &>>$LOGS_FILE
+cp $SCRIPT_DIR/nginx.conf /etc/nginx/nginx.conf  &>>$LOGS_FILE
 VALIDATE $? "Copying Nginx configuration file"
 
 systemctl restart nginx &>>$LOGS_FILE

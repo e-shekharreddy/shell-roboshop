@@ -30,9 +30,12 @@ dnf install mysql-server -y &>>$LOGS_FILE
 VALIDATE $? "Installed MySQL server"
 
 systemctl enable mysqld &>>$LOGS_FILE
+systemctl start mysqld 
 VALIDATE $? "Enable and started MySQL"
 
 # we can used the password in command line from user
 mysql_secure_installation --set-root-pass RoboShop@1
 VALIDATE $? "root password set"
 
+systemctl restart mysql &>>$LOGS_FILE
+VALIDATE $? "Restarted MySQL"

@@ -79,13 +79,3 @@ VALIDATE $? "Enabling user"
 
 systemctl start user &>>$LOGS_FILE
 VALIDATE $? "Started user"
-
-cp $SCRIPT_DIR/mongo.repo /etc/yum.repos.d/mongo.repo &>>$LOGS_FILE
-VALIDATE $? "Coping Mongo repo"
-
-dnf install mongodb-mongosh -y &>>$LOGS_FILE
-VALIDATE $? "installing MongoDB"
-
-
-systemctl restart user &>>$LOGS_FILE
-VALIDATE $? "Restart user"

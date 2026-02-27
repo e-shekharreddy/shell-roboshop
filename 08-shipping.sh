@@ -98,5 +98,5 @@ systemctl start shipping
 VALIDATE $? "Enabled and started Shipping"
 
 
-# systemctl restart shipping &>>$LOGS_FILE
-# VALIDATE $? "Restarted shipping" 
+systemctl restart shipping &>>$LOGS_FILE
+VALIDATE $? "Restarted shipping" 

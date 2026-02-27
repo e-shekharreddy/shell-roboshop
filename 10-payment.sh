@@ -61,7 +61,7 @@ pip3 install -r requirements.txt &>>$LOGS_FILE
 VALIDATE $? "Installing Dependencies"
 
 
-cp $SCRIPT_DIR /payment.service etc/systemd/system/payment.service &>>$LOGS_FILE
+cp $SCRIPT_DIR/payment.service /etc/systemd/system/payment.service &>>$LOGS_FILE
 VALIDATE $? "Created systemctl service"
 
 systemctl daemon-reload &>>$LOGS_FILE

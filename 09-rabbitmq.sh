@@ -31,3 +31,7 @@ VALIDATE(){
 }
 
 cp $SCRIPT_DIR/rabbitmq.repo /etc/systemd/system/rabbitmq.repo
+
+dnf install rabbitmq-server -y &>>$LOGS_FILE
+VALIDATE $? "Installing rabbitmq Server"
+

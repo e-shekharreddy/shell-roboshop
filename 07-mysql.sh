@@ -37,5 +37,5 @@ VALIDATE $? "Enable and started MySQL"
 mysql_secure_installation --set-root-pass RoboShop@1
 VALIDATE $? "root password set"
 
-systemctl restart mysql &>>$LOGS_FILE
-VALIDATE $? "Restarted MySQL"
+# systemctl restart mysql &>>$LOGS_FILE
+# VALIDATE $? "Restarted MySQL"

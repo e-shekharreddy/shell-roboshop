@@ -56,6 +56,10 @@ VALIDATE $? "Removing existing code"
 unzip /tmp/shipping.zip &>>$LOGS_FILE
 VALIDATE $? "Unzipping shipping code"
 
+
+
+
+
 cd /app 
 mvn clean package &>>$LOGS_FILE
 VALIDATE $? "Installing and Building shipping"
@@ -68,12 +72,7 @@ VALIDATE $? "Moving and renamaing"
 cp $SCRIPT_DIR/shipping.service /etc/systemd/system/shipping.service &>>$LOGS_FILE
 VALIDATE $? "Created systtemctl service"
 
-systemctl daemon-reload &>>$LOGS_FILE
-VALIDATE $? "Reloaded Shipping"
 
-systemctl enable shipping &>>$LOGS_FILE
-systemctl start shipping
-VALIDATE $? "Enabled and started Shipping"
 
 dnf install mysql -y &>>$LOGS_FILE
 VALIDATE $? "Installed MySQL"
@@ -81,6 +80,7 @@ VALIDATE $? "Installed MySQL"
 mysql -h $MYSQL_HOST -uroot -pRoboShop@1 -e 'use cities' # her -e means excute
 
 if [ $? -ne 0 ]; then 
+
     mysql -h $MYSQL_HOST -uroot -pRoboShop@1 < /app/db/schema.sql &>>$LOGS_FILE
     mysql -h $MYSQL_HOST -uroot -pRoboShop@1 < /app/db/app-user.sql &>>$LOGS_FILE
     mysql -h $MYSQL_HOST -uroot -pRoboShop@1 < /app/db/master-data.sql &>>$LOGS_FILE
@@ -89,5 +89,14 @@ else
     echo -e "Data already exist... $Y SKIPPING $N"
 fi
 
-systemctl restart shipping &>>$LOGS_FILE
-VALIDATE $? "Restarted shipping" 
+
+systemctl daemon-reload &>>$LOGS_FILE
+VALIDATE $? "Reloaded Shipping"
+
+systemctl enable shipping &>>$LOGS_FILE
+systemctl start shipping
+VALIDATE $? "Enabled and started Shipping"
+
+
+# systemctl restart shipping &>>$LOGS_FILE
+# VALIDATE $? "Restarted shipping" 

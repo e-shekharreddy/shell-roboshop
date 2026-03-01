@@ -15,7 +15,7 @@ MONGODB_HOST="mongodb.tsmvr.fun"
 MYSQL_HOST="mysql.tsmvr.fun"
 
 if [ $USERID -ne 0 ]; then
-    echo -e " $R Please run this script with root user access $N" | tee -a $LOGS_FILE
+    echo -e "$R Please run this script with root user access $N" | tee -a $LOGS_FILE
     exit 1
 fi 
 
@@ -48,6 +48,3 @@ else
     echo -e "User already exist... $Y SKIPPING $N"
 fi
 
-
-systemctl restart rabbitmq-server
-VALIDATE $? "Restarted rabbitmq Server"

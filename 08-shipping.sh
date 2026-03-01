@@ -72,7 +72,8 @@ VALIDATE $? "Moving and renamaing"
 cp $SCRIPT_DIR/shipping.service /etc/systemd/system/shipping.service &>>$LOGS_FILE
 VALIDATE $? "Created systtemctl service"
 
-
+systemctl daemon-reload &>>$LOGS_FILE
+VALIDATE $? "Reloaded Shipping"
 
 dnf install mysql -y &>>$LOGS_FILE
 VALIDATE $? "Installed MySQL"
@@ -90,14 +91,14 @@ else
 fi
 
 
-systemctl daemon-reload &>>$LOGS_FILE
-VALIDATE $? "Reloaded Shipping"
+
 
 systemctl enable shipping &>>$LOGS_FILE
 systemctl start shipping
 VALIDATE $? "Enabled and started Shipping"
 
-
+systemctl restart shipping &>>$LOGS_FILE
+VALIDATE $? "Restarted Shipping"
 
 
 

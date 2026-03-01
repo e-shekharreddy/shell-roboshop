@@ -98,7 +98,6 @@ systemctl start shipping
 VALIDATE $? "Enabled and started Shipping"
 
 
-s
 
 
 

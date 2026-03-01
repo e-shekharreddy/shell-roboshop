@@ -1,8 +1,8 @@
 #!/bin/bash
 
 USERID=$(id -u)
-LOGS_FOLDER="/var/log/shell-roboshop" # full path
-LOGS_FILE="/var/log/shell-roboshop/$0.log" # or we can write it as $LOGS_FOLODER/$0.log
+LOGS_FOLDER="/var/log/shell-roboshop" 
+LOGS_FILE="/var/log/shell-roboshop/$0.log" 
 
 R="\e[31m"
 G="\e[32m"
